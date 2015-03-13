@@ -66,6 +66,16 @@ su - jenkins -c "bash -ex" <<'EOS'
   git status
 EOS
 
+## install rbenv for jenkins
+
+su - jenkins -c "bash -ex" <<'EOS'
+  until curl -fSkL -o /tmp/dot.rbenv.tar.gz http://dlc.wakame.axsh.jp/wakameci/kemumaki-box-rhel6/current/dot.rbenv.tar.gz; do
+    sleep 1
+  done
+  tar zxf /tmp/dot.rbenv.tar.gz -C /var/lib/jenkins/
+  rm /tmp/dot.rbenv.tar.gz
+EOS
+
 ## restart jenkins service
 
 chkconfig --list jenkins
