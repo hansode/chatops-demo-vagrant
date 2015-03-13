@@ -83,3 +83,13 @@ chkconfig jenkins on
 chkconfig --list jenkins
 
 service jenkins restart
+
+## setup httpd for local yum repository
+
+yum install --disablerepo=updates httpd
+
+chkconfig --list httpd
+chkconfig httpd on
+chkconfig --list httpd
+
+service httpd restart
