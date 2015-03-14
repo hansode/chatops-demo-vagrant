@@ -86,7 +86,7 @@ service jenkins restart
 
 ## setup httpd for local yum repository
 
-yum install --disablerepo=updates httpd
+yum install -y --disablerepo=updates httpd
 
 chkconfig --list httpd
 chkconfig httpd on
