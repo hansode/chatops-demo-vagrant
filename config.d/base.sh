@@ -26,6 +26,7 @@ su - ${user} -c "bash -ex" <<'EOS'
 
   sudo ./run-book.sh jenkins.master
   sudo ./run-book.sh hubot.common
+  sudo ./run-book.sh httpd
 EOS
 
 ## install chatops-demo-hubot-hipchat
@@ -85,8 +86,6 @@ chkconfig --list jenkins
 service jenkins restart
 
 ## setup httpd for local yum repository
-
-yum install -y --disablerepo=updates httpd
 
 chkconfig --list httpd
 chkconfig httpd on
