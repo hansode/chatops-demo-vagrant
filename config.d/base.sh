@@ -11,9 +11,17 @@ set -x
 
 user=${user:-vagrant}
 
-## install packages for jenkins/hubot
+## install packages for jenkins/hubot/httpd
 
 su - ${user} -c "bash -ex" <<'EOS'
+  addpkgs="
+   jenkins.master hubot.common httpd
+  "
+
+  if [[ -z "$(echo ${addpkgs})" ]]; then
+    exit 0
+  fi
+
   deploy_to=/var/tmp/buildbook-rhel6
 
   if ! [[ -d "${deploy_to}" ]]; then
@@ -24,13 +32,7 @@ su - ${user} -c "bash -ex" <<'EOS'
   git checkout master
   git pull
 
-  addpkgs="
-   jenkins.master hubot.common httpd
-  "
-
-  if [[ -n "$(echo ${addpkgs})" ]]; then
-    sudo ./run-book.sh ${addpkgs}
-  fi
+  sudo ./run-book.sh ${addpkgs}
 EOS
 
 ## install chatops-demo-hubot-hipchat
@@ -82,17 +84,16 @@ su - jenkins -c "bash -ex" <<'EOS'
 EOS
 
 ## restart jenkins service
-
-chkconfig --list jenkins
-chkconfig jenkins on
-chkconfig --list jenkins
-
-service jenkins restart
-
 ## setup httpd for local yum repository
 
-chkconfig --list httpd
-chkconfig httpd on
-chkconfig --list httpd
+svcs="
+ jenkins httpd
+"
 
-service httpd restart
+for svc in ${svcs}; do
+  chkconfig --list ${svc}
+  chkconfig ${svc} on
+  chkconfig --list ${svc}
+
+  service ${svc} restart
+done
