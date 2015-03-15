@@ -24,9 +24,13 @@ su - ${user} -c "bash -ex" <<'EOS'
   git checkout master
   git pull
 
-  sudo ./run-book.sh jenkins.master
-  sudo ./run-book.sh hubot.common
-  sudo ./run-book.sh httpd
+  addpkgs="
+   jenkins.master hubot.common httpd
+  "
+
+  if [[ -n "$(echo ${addpkgs})" ]]; then
+    sudo ./run-book.sh ${addpkgs}
+  fi
 EOS
 
 ## install chatops-demo-hubot-hipchat
