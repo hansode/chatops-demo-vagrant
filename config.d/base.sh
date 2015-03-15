@@ -15,7 +15,11 @@ user=${user:-vagrant}
 
 su - ${user} -c "bash -ex" <<'EOS'
   addpkgs="
-   jenkins.master hubot.common jenkins.plugin.rbenv httpd
+   jenkins.master
+   hubot.common
+   jenkins.plugin.rbenv
+   httpd
+   rpmbuild
   "
 
   if [[ -z "$(echo ${addpkgs})" ]]; then
