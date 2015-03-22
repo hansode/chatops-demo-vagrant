@@ -99,3 +99,20 @@ su - ${user} -c "bash -ex" <<'EOS'
     ln -fs /vagrant/dot.hubotrc ${HOME}/.hubotrc
   fi
 EOS
+
+if [[ -d /vagrant ]] && [[ -d /etc/init ]]; then
+  cat <<-'EOS' > /etc/init/hubot.conf
+	description Hubot
+
+	respawn
+	respawn limit 5 60
+
+	script
+	  sleep 3
+	  su - vagrant -c /home/vagrant/chatops-demo-hubot-hipchat/bin/hubot-hipchat-jenkins
+	end script
+	EOS
+
+  initctl stop  hubot || :
+  initctl start hubot
+fi
