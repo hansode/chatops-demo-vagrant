@@ -11,7 +11,7 @@ set -x
 
 user=${user:-vagrant}
 
-## install packages
+## 1: install packages
 
 su - ${user} -c "bash -ex" <<'EOS'
   addpkgs="
@@ -40,21 +40,7 @@ su - ${user} -c "bash -ex" <<'EOS'
   sudo ./run-book.sh ${addpkgs}
 EOS
 
-## install chatops-demo-hubot-hipchat
-
-su - ${user} -c "bash -ex" <<'EOS'
-  deploy_to=${HOME}/chatops-demo-hubot-hipchat
-
-  if ! [[ -d "${deploy_to}" ]]; then
-    git clone https://github.com/hansode/chatops-demo-hubot-hipchat.git ${deploy_to}
-  fi
-
-  cd ${deploy_to}
-  git checkout master
-  git pull
-EOS
-
-## install chatops-demo-jenkins
+## 2: configure jenkins
 
 su - jenkins -c "bash -ex" <<'EOS'
   umask 077
@@ -76,7 +62,7 @@ su - jenkins -c "bash -ex" <<'EOS'
   git status
 EOS
 
-## restart services
+## 3: restart services
 ## setup httpd for local yum repository
 
 svcs="
@@ -92,7 +78,21 @@ for svc in ${svcs}; do
   service ${svc} restart
 done
 
-## vagrant-specific hubot integration
+## 4: install custom hubot
+
+su - ${user} -c "bash -ex" <<'EOS'
+  deploy_to=${HOME}/chatops-demo-hubot-hipchat
+
+  if ! [[ -d "${deploy_to}" ]]; then
+    git clone https://github.com/hansode/chatops-demo-hubot-hipchat.git ${deploy_to}
+  fi
+
+  cd ${deploy_to}
+  git checkout master
+  git pull
+EOS
+
+## 5: vagrant-specific hubot integration
 
 su - ${user} -c "bash -ex" <<'EOS'
   if [[ -d /vagrant ]]; then
