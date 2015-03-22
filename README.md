@@ -47,7 +47,9 @@ $ ./bin/hubot-hipchat-jenkins
 References
 ----------
 
-+ ...
++ [wakameci/buildbook-rhel6](https://github.com/wakameci/buildbook-rhel6)
++ [hansode/chatops-demo-jenkins](https://github.com/hansode/chatops-demo-jenkins)
++ [hansode/chatops-demo-hubot-hipchat](https://github.com/hansode/chatops-demo-hubot-hipchat)
 
 Contributing
 ------------
