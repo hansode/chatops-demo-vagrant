@@ -91,3 +91,11 @@ for svc in ${svcs}; do
 
   service ${svc} restart
 done
+
+## vagrant-specific hubot integration
+
+su - ${user} -c "bash -ex" <<'EOS'
+  if [[ -d /vagrant ]]; then
+    ln -fs /vagrant/dot.hubotrc ${HOME}/.hubotrc
+  fi
+EOS
