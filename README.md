@@ -44,6 +44,8 @@ $ cd chatops-demo-hubot-hipchat/
 $ ./bin/hubot-hipchat-jenkins
 ```
 
+Access to http://localhost:8081/
+
 References
 ----------
 

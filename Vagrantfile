@@ -44,7 +44,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision "shell", path: "config.d/base.sh" # Configuration: node-common          (phase:2)
 
   # jenkins ui
-  config.vm.network "forwarded_port", guest: 8080, host: 8080, host_ip: "127.0.0.1"
+  config.vm.network "forwarded_port", guest: 8080, host: 8081, host_ip: "127.0.0.1"
 
  #2.times.each { |i|
  #  name = sprintf("node%02d", i + 1)
