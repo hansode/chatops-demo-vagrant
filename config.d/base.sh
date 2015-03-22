@@ -15,6 +15,7 @@ user=${user:-vagrant}
 
 su - ${user} -c "bash -ex" <<'EOS'
   addpkgs="
+   hold-releasever.hold-baseurl
    jenkins.master
    hubot.common
    jenkins.plugin.rbenv
