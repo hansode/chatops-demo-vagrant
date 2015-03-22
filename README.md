@@ -13,12 +13,6 @@ Requirements
 Getting Started
 ---------------
 
-Create a VM.
-
-```
-laptop$ make up
-```
-
 Create `dot.hubotrc`.
 
 ```
@@ -29,6 +23,12 @@ laptop$ vi dot.hubotrc
 export HUBOT_HIPCHAT_JID="********@chat.hipchat.com"
 export HUBOT_HIPCHAT_PASSWORD="********"
 export HUBOT_LOG_LEVEL="debug"
+```
+
+Create a VM.
+
+```
+laptop$ make up
 ```
 
 Connect to the VM.
