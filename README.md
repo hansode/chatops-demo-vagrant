@@ -37,14 +37,23 @@ Connect to the VM.
 laptop$ vagrant ssh
 ```
 
-Run Hubot.
+Access to http://localhost:8081/
+
+Debugging
+---------
+
+Run Hubot manually.
 
 ```
 vagrant$ cd chatops-demo-hubot-hipchat/
 vagrant$ ./bin/hubot-hipchat-jenkins
 ```
 
-Access to http://localhost:8081/
+Show Hubot log.
+
+```
+vagrant$ tail -F hubot.log
+```
 
 References
 ----------
