@@ -16,19 +16,13 @@ Getting Started
 Create a VM.
 
 ```
-$ make up
+laptop$ make up
 ```
 
-Connect to the VM.
+Create `dot.hubotrc`.
 
 ```
-$ vagrant ssh
-```
-
-Create `~/.hubotrc`.
-
-```
-$ vi ~/.hubotrc
+laptop$ vi dot.hubotrc
 ```
 
 ```
@@ -37,11 +31,17 @@ export HUBOT_HIPCHAT_PASSWORD="********"
 export HUBOT_LOG_LEVEL="debug"
 ```
 
+Connect to the VM.
+
+```
+laptop$ vagrant ssh
+```
+
 Run Hubot.
 
 ```
-$ cd chatops-demo-hubot-hipchat/
-$ ./bin/hubot-hipchat-jenkins
+vagrant$ cd chatops-demo-hubot-hipchat/
+vagrant$ ./bin/hubot-hipchat-jenkins
 ```
 
 Access to http://localhost:8081/
