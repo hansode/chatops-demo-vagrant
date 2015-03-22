@@ -11,7 +11,7 @@ set -x
 
 user=${user:-vagrant}
 
-## install packages for jenkins/hubot/httpd
+## install packages
 
 su - ${user} -c "bash -ex" <<'EOS'
   addpkgs="
@@ -75,11 +75,12 @@ su - jenkins -c "bash -ex" <<'EOS'
   git status
 EOS
 
-## restart jenkins service
+## restart services
 ## setup httpd for local yum repository
 
 svcs="
- jenkins httpd
+ jenkins
+ httpd
 "
 
 for svc in ${svcs}; do
