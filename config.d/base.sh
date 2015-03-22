@@ -55,8 +55,6 @@ EOS
 
 ## install chatops-demo-jenkins
 
-usermod -s /bin/bash jenkins
-
 su - jenkins -c "bash -ex" <<'EOS'
   umask 077
 
