@@ -109,7 +109,7 @@ if [[ -d /vagrant ]] && [[ -d /etc/init ]]; then
 
 	script
 	  sleep 3
-	  su - vagrant -c /home/vagrant/chatops-demo-hubot-hipchat/bin/hubot-hipchat-jenkins
+	  su - vagrant -c /home/vagrant/chatops-demo-hubot-hipchat/bin/hubot-hipchat-jenkins >>/var/log/hubot.log 2>&1
 	end script
 	EOS
 
